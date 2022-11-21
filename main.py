@@ -1,7 +1,8 @@
 from sdk_class import sudoku, package
-from sdk_fonc import printSudokuError, openFile
+from mod.utils import printSudokuError, openFile
 
-game: sudoku = sudoku(line = openFile("C:/Users/Evan/Documents/Programmation/Python/programmes/Sudoku_Project/Sudoku_V1/exemple.txt"))
+
+game: sudoku = sudoku(line = openFile("model.txt"))
 isFull: bool = False
 advancement: list = []
 report = game.board.check()
