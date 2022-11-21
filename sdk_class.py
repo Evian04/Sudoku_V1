@@ -2,6 +2,7 @@ from termcolor import colored
 from sdk_fonc import contentFormatConverter
 listFormats: tuple = ("line", "column", "square")
 
+
 """
 package's the format that the fonction check return. This class has no fonction, it's just storing information.
 """
