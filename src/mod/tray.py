@@ -1,5 +1,5 @@
 from termcolor import colored
-from mod.utils import contentFormatConverter
+from src.mod.utils import contentFormatConverter
 listFormats = ("line", "column", "square")
 
 
