@@ -1,13 +1,14 @@
-from mod.utils import contentFormatConverter
+from src.module.utils import contentFormatConverter
+from src.module.tray import Tray
 listFormats = ("line", "column", "square")
 
 
 
-class sudoku:
+class Solver:
     """ Gathers the conclusive functions that allow to solve the sudoku. """
 
     def __init__(self, line: list[list[str]] = [], column: list[list[str]] = [], square: list[list[str]] = []) -> None:
-        self.board: tray = tray(line = line, column = column, square = square)
+        self.board = Tray(line = line, column = column, square = square)
         self.possibleDigit: dict[str: list[list[dict[str: bool or int]]]] = {
             format: [[{
                 "1": True,

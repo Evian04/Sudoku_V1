@@ -1,5 +1,6 @@
 from termcolor import colored
-from src.mod.utils import contentFormatConverter
+from src.module.utils import contentFormatConverter
+from src.module.bundle import Bundle
 listFormats = ("line", "column", "square")
 
 
@@ -81,8 +82,8 @@ class Tray:
         self.content[format][id[0]][id[1]] = " "
         self.contentUpdate(format)
     
-    def check(self) -> Informations:
-        # This fonction return some information about the tray like if it's full ? if there is errors ? and if yes, where ? using the class "Informations"
+    def check(self) -> Bundle:
+        # This fonction return some information about the tray like if it's full ? if there is errors ? and if yes, where ? using the class "Bundle"
         isFull: bool = True
         isError: bool = False
         formatsErrors: list[str] = []
@@ -112,7 +113,7 @@ class Tray:
                             doubloonDigitErrors.append(caseValue)
                         listDigits.append(caseValue)
         
-        return Informations(isFull,isError, formatsErrors, idErrors, doubloonDigitErrors)
+        return Bundle(isFull,isError, formatsErrors, idErrors, doubloonDigitErrors)
     
     def printBoard(self, color: str = "") -> None:
         toPrint: str = ""

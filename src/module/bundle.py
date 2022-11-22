@@ -1,4 +1,4 @@
-class Informations:
+class Bundle:
     """ Packages the information returned by the check function. """
 
     def __init__(self, isFull: bool, isError: bool, formatsErrors: list[str] = [], idErrors: list[int] = [], doubloonDigitErrors: list[str] = []) -> None:
