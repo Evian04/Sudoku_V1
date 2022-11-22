@@ -83,7 +83,6 @@ class tray:
             print("Error Fonction contentUpdate : incompatible ref")
     
     def getCaseValue(self, format: str, id: tuple[int]) -> str:
-        # This fonction return the value of a case according to its coordinates in a specific format.
         return self.content[format][id[0]][id[1]]
     
     def addDigit(self, digit: str, format: str, id: tuple[int]) -> None:
@@ -130,6 +129,7 @@ class tray:
         return package(isFull,isError, formatsErrors, idErrors, doubloonDigitErrors)
     
     def printBoard(self, color: str = "") -> None:
+        # This fonction print the board in the consol
         toPrint: str = ""
         format = listFormats[0]
         for iLine in range(9):

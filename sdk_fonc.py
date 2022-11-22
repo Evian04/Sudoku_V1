@@ -30,11 +30,13 @@ def contentFormatConverter(content: list[list], formats: str) -> list[list]:
     return toReturn
 
 def printSudokuError(report, game) -> None:
+    # This fonction print the details of an error when there's one
     game.board.printBoard("red")
     for i in range(len(report.formatsErrors)):
         print(f"\nError {i + 1}: Format = {report.formatsErrors[i]}\n         Index = {report.idErrors[i]}\n         Doubloon = {report.doubloonDigitErrors[i]}")
 
 def openFile(src: str) -> list[list[str]]:
+    # This fonction return the content of a certain file 
     file = open(src, "rt")
     sudoku = file.read()
     file.close()
