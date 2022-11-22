@@ -3,7 +3,6 @@ from src.module.tray import Tray
 listFormats = ("line", "column", "square")
 
 
-
 class Solver:
     """ Gathers the conclusive functions that allow to solve the sudoku. """
 

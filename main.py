@@ -3,26 +3,26 @@ from src.module.bundle import Bundle
 from src.module.utils import printSudokuError, openFile
 
 
-game: Solver = Solver(line = openFile("model.txt"))
-isFull: bool = False
-advancement: list = []
-report = game.board.check()
+solver = Solver(line = openFile("model.txt"))
+isFull = False
+advancement = []
+report = solver.board.check()
 
-while not isFull and [game.board.content, game.possibleDigit] != advancement and not report.isError:
-    advancement = [game.board.content, game.possibleDigit]
-    report: Bundle = game.board.check()
+while not isFull and [solver.board.content, solver.possibleDigit] != advancement and not report.isError:
+    advancement = [solver.board.content, solver.possibleDigit]
+    report: Bundle = solver.board.check()
     isFull = report.isFull
     
-    game.board.printBoard()
-    game.calculatesPossibleDigit()
-    game.setNewDigit()
+    solver.board.printBoard()
+    solver.calculatesPossibleDigit()
+    solver.setNewDigit()
 
 if report.isError:
-    game.board.printBoard("red")
-    printSudokuError(report, game)
+    solver.board.printBoard("red")
+    printSudokuError(report, solver)
 
 elif report.isFull:
-    game.board.printBoard("green")
+    solver.board.printBoard("green")
 
 else:
     print("bloqué :/")

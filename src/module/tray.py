@@ -4,12 +4,11 @@ from src.module.bundle import Bundle
 listFormats = ("line", "column", "square")
 
 
-
 class Tray:
     """ Allows you to manage the actions performed on the Sudoku grid. """
 
-    def __init__(self, line: list[list[str]] = [], column: list[list[str]] = [], square: list[list[str]] = []) -> None:
-        self.content: dict[str: list[list[str]]] = {
+    def __init__(self, line: list[list[str]] = [], column: list[list[str]] = [], square: list[list[str]] = []):
+        self.content = {
             listFormats[0]: list[list[str]],
             listFormats[1]: list[list[str]],
             listFormats[2]: list[list[str]]
@@ -25,6 +24,7 @@ class Tray:
             listFormats[1]: column,
             listFormats[2]: square
         }
+        
         for format in listFormats:
             self.content[format] = dictFormat[format]
             self.contentUpdate(format)
