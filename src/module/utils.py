@@ -1,36 +1,11 @@
-def calculatesCoordinates(formats, i: int, i2: int, i3: int) -> tuple:
-    # This fonction just return which coordinates the contentFormatConverter has to use according to the formats.
-    if formats == "sl" or "ls":
-        return (i2 + (i // 3) * 3, i3 + (i % 3) * 3)
+def read_file(file: str) -> list[list[str]]:
+    """ Returns the content of a file as a list of lines containing the characters of the line. """
     
-    elif formats == "lc" or formats == "cl":
-        return (i2 * 3 + i3, i)
+    f = open(file, "r")
+    lines = f.read().split("\n")
+    f.close()
+    sudoku = []
     
-    elif formats == "sc":
-        return (i2 * 3 + i // 3, i3 * 3 + i % 3)
-    
-    elif formats == "cs":
-        return (i3 % 3 + (i % 3) * 3, i2 + (i // 3) * 3)
-    
-    else:
-        print("Error Fonction calculatesCoordinates : incompatible formats")
-        return ()
-
-def contentFormatConverter(content: list[list], formats: str) -> list[list]:
-    # This fonction convert the format of the sudoku infos, like square into line, or line into column.
-    toReturn: list = []
-    for i in range(9):
-        tmpList: list = []
-        for i2 in range(3):
-            for i3 in range(3):
-                print(formats, i, i2, i3)
-                tmpList.append(content[calculatesCoordinates(formats, i, i2, i3)[0]][calculatesCoordinates(formats, i, i2, i3)[1]])
-        
-        toReturn.append(tmpList)
-    return toReturn
-
-def printSudokuError(report, game) -> None:
-    # This fonction print the details of an error when there's one
-    game.board.printBoard("red")
-    for i in range(len(report.formatsErrors)):
-        print(f"\nError {i + 1}: Format = {report.formatsErrors[i]}\n         Index = {report.idErrors[i]}\n         Doubloon = {report.doubloonDigitErrors[i]}")
+    for line in lines:
+        sudoku.append(list(char for char in line))
+    return sudoku
