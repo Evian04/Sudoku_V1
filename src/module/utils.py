@@ -3,12 +3,9 @@ def read_file(file: str) -> list[list[str]]:
     
     f = open(file, "r")
     lines = f.read().split("\n")
+    f.close()
     sudoku = []
     
     for line in lines:
         sudoku.append(list(char for char in line))
     return sudoku
-
-def possible_digit(): pass
-def as_column(): pass
-def as_sqaure(): pass
