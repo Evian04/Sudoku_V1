@@ -34,21 +34,3 @@ def printSudokuError(report, game) -> None:
     game.board.printBoard("red")
     for i in range(len(report.formatsErrors)):
         print(f"\nError {i + 1}: Format = {report.formatsErrors[i]}\n         Index = {report.idErrors[i]}\n         Doubloon = {report.doubloonDigitErrors[i]}")
-
-def openFile(src: str) -> list[list[str]]:
-    # This fonction return the content of a certain file 
-    file = open(src, "rt")
-    sudoku = file.read()
-    file.close()
-    sudoku = list(sudoku.split("\n"))
-
-    if len(sudoku) != 9:
-        print(f"Error fonction openFile : incompatible format at file {src}")
-        return []
-    else:
-        for line in sudoku:
-            if len(line) != 9:
-                print(f"Error fonction openFile : incompatible format at file {src}")
-                return []
-    
-    return sudoku

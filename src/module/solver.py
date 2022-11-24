@@ -15,6 +15,24 @@ class Solver:
                 ] for b in range(9)
             ] for format in listFormats
         }
+
+    def openFile(self, src: str) -> list:
+        # This fonction set the content of the sudoku by oppening a file
+        with open(src, "rt") as file:
+            grid = file.read()
+
+        grid = list(grid.split("\n"))
+
+        if len(grid) != 9:
+            print(f"Error fonction openFile : incompatible format at file {src}")
+            return []
+        else:
+            for line in grid:
+                if len(line) != 9:
+                    print(f"Error fonction openFile : incompatible format at file {src}")
+                    return []
+        
+        self.board.overWriteContent(grid)
     
     def updatePossibleDigit(self, ref: str) -> None:
         # When a certain format of the "possible digits" is modified, the authers are updates with this fonction.

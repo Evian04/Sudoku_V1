@@ -30,7 +30,7 @@ class Tray:
             self.content[format] = dictFormat[format]
             self.contentUpdate(format)
 
-    def userContentRequest(self) -> list[list[str]]:
+    def userContentRequest(self) -> list:
         # This fonction request the content of the sudoku to the user
         finalContent = []
         for i in range(9):
