@@ -34,22 +34,22 @@ class Solver:
             print("Error Fonction contentUpdate : incompatible ref")
 
     def calculatesPossibleDigit(self) -> None:
-        # This fonction reduce the possible digit of each case according to the digit that are already set
+        # This fonction reduce the possible digit of each cell according to the digit that are already set
         for format in listFormats:
             content = self.board.content[format]
             for iPart in range(len(content)):
                 listDigits = []
-                for iCase in range(len(content[iPart])):
-                    caseValue = self.board.getCaseValue(format, (iPart, iCase))
-                    if caseValue != " ":
-                        listDigits.append(caseValue)
+                for iCell in range(len(content[iPart])):
+                    cellValue = self.board.getCellValue(format, (iPart, iCell))
+                    if cellValue != " ":
+                        listDigits.append(cellValue)
                 # This part of the fonction set a list of all the digit that are present in each part of the board (a "part" is the list of all the cells in a line, a column or a square)
                 
-                for iCase in range(len(content[iPart])):
-                    caseValue = self.board.getCaseValue(format, (iPart, iCase))
+                for iCell in range(len(content[iPart])):
+                    cellValue = self.board.getCellValue(format, (iPart, iCell))
                     for digit in listDigits:
-                        if digit in self.possibleDigit[format][iPart][iCase]:
-                            self.possibleDigit[format][iPart][iCase].remove(digit)
+                        if digit in self.possibleDigit[format][iPart][iCell]:
+                            self.possibleDigit[format][iPart][iCell].remove(digit)
                 # And this one remove the digits of the obtained list from the possible digits of every empty cells of the part in question
             
             self.updatePossibleDigit(format)
@@ -59,19 +59,19 @@ class Solver:
     # But it will maybe serve one day, never know...
     """
     def setNewDigit(self) -> None:
-        # This fonction set some new digit according to the list of possible digit of each case.
+        # This fonction set some new digit according to the list of possible digit of each cell.
         format = listFormats[0]
         for iPart in range(9):
-            for iCase in range(9):
-                if self.board.getCaseValue(format, (iPart, iCase)) != " ":
+            for iCell in range(9):
+                if self.board.getCellValue(format, (iPart, iCell)) != " ":
                     continue
 
-                if len(self.possibleDigit[format][iPart][iCase]) != 1:
+                if len(self.possibleDigit[format][iPart][iCell]) != 1:
                     continue
 
                 for digit in range(9):
-                    if str(digit + 1) in self.possibleDigit[format][iPart][iCase]:
-                        self.board.addDigit(str(digit + 1), format, (iPart, iCase))
+                    if str(digit + 1) in self.possibleDigit[format][iPart][iCell]:
+                        self.board.addDigit(str(digit + 1), format, (iPart, iCell))
 
         self.updatePossibleDigit(format)
         """

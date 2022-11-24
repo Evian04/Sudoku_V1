@@ -103,14 +103,14 @@ class Tray:
             for iPart in range(9):
                 listDigits = []
                 for iCell in range(9):
-                    caseValue = self.getCaseValue(format, (iPart, iCell))
-                    if not caseValue == " ":
-                        if caseValue in listDigits:
+                    cellValue = self.getCellValue(format, (iPart, iCell))
+                    if not cellValue == " ":
+                        if cellValue in listDigits:
                             isConflicts = True
                             formatsConflicts.append(format)
                             idConflicts.append((iPart, iCell))
-                            doubloonDigitConflicts.append(caseValue)
-                        listDigits.append(caseValue)
+                            doubloonDigitConflicts.append(cellValue)
+                        listDigits.append(cellValue)
         
         return Bundle(isConflicts, formatsConflicts, idConflicts, doubloonDigitConflicts)
     
@@ -120,10 +120,10 @@ class Tray:
         format = listFormats[0]
         for iLine in range(9):
             line = ""
-            for iCase in range(9):
-                line += self.getCaseValue(format, (iLine, iCase))
+            for iCell in range(9):
+                line += self.getCellValue(format, (iLine, iCell))
 
-                if iCase in [2, 5]:
+                if iCell in [2, 5]:
                     line += "|"
                 else:
                     line += " "
