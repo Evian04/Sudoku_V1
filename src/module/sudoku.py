@@ -14,12 +14,21 @@ class Sudoku:
     def is_valid(self): pass
 
     def first_empty_cell(self) -> Cell:
+        """ Return first empty cell """
+        
         for line in self.content:
             for cell in line:
                 if cell.get_value() == " ":
                     return cell
 
-    def is_full(self): pass
+    def is_full(self) -> bool:
+        for line in self.get_content():
+            for num in line:
+                if num == " ":
+                    return False
+        return True
+            
+        
     def as_column(self): pass
     def as_square(self): pass
 

@@ -11,6 +11,11 @@ class Cell:
         self.b = b
     
     def get_possible_digit(self, sdk: Sudoku) -> list[str]:
+        """
+        Allows to collect all the possible numbers
+        for a cell based on its row, column and cell group.
+        """
+        
         if sdk[self.a][self.b] != " ":
             return [sdk[self.a][self.b]]
 
