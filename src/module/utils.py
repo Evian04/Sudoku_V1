@@ -1,9 +1,13 @@
+from src.module.cell import Cell
+from src.module.sudoku import Sudoku
+
+
 def read_file(file: str) -> list[list[str]]:
     """ Returns the content of a file as a list of lines containing the characters of the line. """
     
-    f = open(file, "r")
-    lines = f.read().split("\n")
-    f.close()
+    with open(file, "r") as file:
+        lines = file.read().split("\n")
+
     sudoku = []
     
     # transform sudoku into a list[list[str]] (sudoku -> lines -> chars)
@@ -17,3 +21,5 @@ def read_file(file: str) -> list[list[str]]:
                 return sudoku
             else: quit("A line must contain a total of 9 chars.")            
     else: quit("The file must contain a total of 9 lines.")
+
+def convert_index(a: int, b: int, kind) -> int: pass
