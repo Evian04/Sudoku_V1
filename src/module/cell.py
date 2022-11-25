@@ -1,7 +1,7 @@
 from src.module.sudoku import Sudoku
 
 
-class Square:
+class Cell:
     """ Groups the important data for a square """
     
     def __init__(self, value, a, b):
