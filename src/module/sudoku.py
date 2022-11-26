@@ -24,10 +24,10 @@ class Sudoku:
     def first_empty_cell(self) -> Cell:
         """ Return first empty cell """
         
-        for line in self.content:
-            for cell in line:
-                if cell.get_value() == " ":
-                    return cell
+        for index_line in range(len(self.content)):
+            for index_cell in range(len(self.content[index_line])):
+                if self.content[index_line][index_cell] == " ":
+                    return Cell(" ", index_line, index_cell)
 
     def is_full(self) -> bool:
         for line in self.get_content():
