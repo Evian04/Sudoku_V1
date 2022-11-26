@@ -37,13 +37,13 @@ class Sudoku:
                     return False
         return True
     
-    def content_as(self, kind: str) -> list[list[str]]:
-        """ Return the content with kind = column"""
+    def get_content(self, kind: str) -> list[list[str]]:
+        """ Return the content with kind"""
         content = [["" for b in range(9)] for a in range(9)] # create a list of list of empty string, that's the future content to return
         
-        for index_line in range(len(self.content)):
-            for index_cell in range(len(self.content[index_line])):
-                index_as_column = convert_index(index_line, index_cell, "column")
-                content[index_as_column[0]][index_as_column[1]] = self.content[index_line][index_cell]
+        for index_part in range(len(self.content)):
+            for index_cell in range(len(self.content[index_part])):
+                index_converted = convert_index(index_part, index_cell, kind)
+                content[index_converted[0]][index_converted[1]] = self.content[index_part][index_cell]
         
         return content
