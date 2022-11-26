@@ -1,13 +1,12 @@
 from src.module.cell import Cell
-from src.module.utils import convert_index
+from src.module.utils import get_index_as
 
 
 class Sudoku:
     """ Contains the functions that apply directly to the sudoku """
     
-    def __init__(self, content: list[list[str]], kind):
+    def __init__(self, content: list[list[str]]):
         self.content = content
-        self.kind = kind
         
     def solve(self): pass
 
@@ -25,25 +24,32 @@ class Sudoku:
     def first_empty_cell(self) -> Cell:
         """ Return the first empty cell """
         
-        for index_line in range(len(self.content)):
-            for index_cell in range(len(self.content[index_line])):
-                if self.content[index_line][index_cell] == " ":
-                    return Cell(" ", index_line, index_cell)
+        # for index_line in range(len(self.content)):
+        #     for index_cell in range(len(self.content[index_line])):
+        #         if self.content[index_line][index_cell] == " ":
+        #             return Cell(" ", index_line, index_cell)
+        for line in self.get_as("line"):
+            for num in line:
+                if self.content[line][num.index()] == " ":
+                    return Cell(" ", line, num.index())
 
     def is_full(self) -> bool:
-        for line in self.get_content():
+        """ Check if sudoku is full """
+        for line in self.get_as("line"):
             for num in line:
                 if num == " ":
                     return False
         return True
     
-    def content_as(self, kind: str) -> list[list[str]]:
-        """ Return the content with kind = column"""
-        content = [["" for b in range(9)] for a in range(9)] # create a list of list of empty string, that's the future content to return
+    def get_as(self, kind: str) -> list[list[str]]:
+        """ Convert the sudoku into a given format """
+        
+        # create a list of list of empty string, that's the future content to return
+        content = [["" for b in range(9)] for a in range(9)]
         
         for index_line in range(len(self.content)):
             for index_cell in range(len(self.content[index_line])):
-                index_as_column = convert_index(index_line, index_cell, "column")
+                index_as_column = get_index_as(index_line, index_cell, "column")
                 content[index_as_column[0]][index_as_column[1]] = self.content[index_line][index_cell]
         
         return content

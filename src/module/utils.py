@@ -22,13 +22,8 @@ def read_file(file: str) -> list[list[str]]:
             else: quit("A line must contain a total of 9 chars.")            
     else: quit("The file must contain a total of 9 lines.")
 
-def convert_index(a: int, b: int, kind) -> tuple(int):
+def get_index_as(a: int, b: int, kind) -> tuple(int):
     match kind:
-        case "line":
-            return (a, b)
-        
-        case "column":
-            return (b, a)
-        
-        case "square":
-            return (b // 3 + (a // 3) * 3, b % 3 + (a % 3) * 3)
+        case "line": return (a, b)
+        case "column": return (b, a)
+        case "square": return (b // 3 + (a // 3) * 3, b % 3 + (a % 3) * 3)
