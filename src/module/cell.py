@@ -20,10 +20,9 @@ class Cell:
             return [sdk[self.a][self.b]]
 
         list_digits = [str(a + 1) for a in range(9)] # = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-        dict_kind_func = {"line": sdk.get_content, "column": sdk.as_column, "square": sdk.as_square}
 
         for kind in ["line", "column", "square"]:
-            for d in dict_kind_func[kind]()[convert_index(self.a, self.b, kind)[0]]:
+            for d in sdk.content_as(kind)[0]:
                 if d != " ":
                     if d in list_digits:
                         list_digits.remove(d)
