@@ -1,4 +1,5 @@
 from src.module.cell import Cell
+from src.module.utils import convert_index
 
 
 class Sudoku:
@@ -22,7 +23,7 @@ class Sudoku:
     def is_valid(self): pass
 
     def first_empty_cell(self) -> Cell:
-        """ Return first empty cell """
+        """ Return the first empty cell """
         
         for index_line in range(len(self.content)):
             for index_cell in range(len(self.content[index_line])):
@@ -35,9 +36,18 @@ class Sudoku:
                 if num == " ":
                     return False
         return True
-            
+    
+    def as_column(self) -> list[list[str]]:
+        """ Return the content with kind = column"""
+        column_content = [["" for b in range(9)] for a in range(9)] # create a list of list of empty string, that's the future content to return
         
-    def as_column(self): pass
+        for index_line in range(len(self.content)):
+            for index_cell in range(len(self.content[index_line])):
+                index_as_column = convert_index(index_line, index_cell, "column")
+                column_content[index_as_column[0]][index_as_column[1]] = self.content[index_line][index_cell]
+        
+        return column_content
+    
     def as_square(self): pass
 
     def get_content(self):
