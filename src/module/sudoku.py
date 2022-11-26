@@ -37,18 +37,13 @@ class Sudoku:
                     return False
         return True
     
-    def as_column(self) -> list[list[str]]:
+    def content_as(self, kind: str) -> list[list[str]]:
         """ Return the content with kind = column"""
-        column_content = [["" for b in range(9)] for a in range(9)] # create a list of list of empty string, that's the future content to return
+        content = [["" for b in range(9)] for a in range(9)] # create a list of list of empty string, that's the future content to return
         
         for index_line in range(len(self.content)):
             for index_cell in range(len(self.content[index_line])):
                 index_as_column = convert_index(index_line, index_cell, "column")
-                column_content[index_as_column[0]][index_as_column[1]] = self.content[index_line][index_cell]
+                content[index_as_column[0]][index_as_column[1]] = self.content[index_line][index_cell]
         
-        return column_content
-    
-    def as_square(self): pass
-
-    def get_content(self):
-        return self.content
+        return content
