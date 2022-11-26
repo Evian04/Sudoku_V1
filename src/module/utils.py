@@ -24,6 +24,9 @@ def read_file(file: str) -> list[list[str]]:
 
 def convert_index(a: int, b: int, kind) -> tuple(int):
     match kind:
+        case "line":
+            return (a, b)
+        
         case "column":
             return (b, a)
         
