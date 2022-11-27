@@ -1,16 +1,12 @@
-from sudoku import Sudoku
-from utils import convert_index
-
-
 class Cell:
     """ Groups the important data for a square """
     
-    def __init__(self, value: str, a: int, b: int):
+    def __init__(self, value: str or None, a: int, b: int):
         self.value = value
         self.a = a
         self.b = b
     
-    def get_possible_digits(self, sdk: Sudoku) -> list[str]:
+    def get_possible_digits(self, sdk) -> list[str]:
         """
         Allows to collect all the possible numbers
         for a cell based on its row, column and cell group.

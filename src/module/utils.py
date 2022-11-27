@@ -1,5 +1,4 @@
-from src.module.cell import Cell
-from src.module.sudoku import Sudoku
+from .cell import Cell
 
 
 def read_file(file: str) -> list[list[str]]:
@@ -22,8 +21,10 @@ def read_file(file: str) -> list[list[str]]:
             else: quit("A line must contain a total of 9 chars.")            
     else: quit("The file must contain a total of 9 lines.")
 
-def get_index_as(a: int, b: int, kind) -> tuple(int):
+def get_index_as(a: int, b: int, kind: str) -> Cell:
+    """ Convert a given coordinate format to another `kind` format """
+    
     match kind:
-        case "line": return (a, b)
-        case "column": return (b, a)
-        case "square": return (b // 3 + (a // 3) * 3, b % 3 + (a % 3) * 3)
+        case "line": return Cell(None, a, b)
+        case "column": return Cell(None, b, a)
+        case "square": return Cell(None, b // 3 + (a // 3) * 3, b % 3 + (a % 3) * 3)
