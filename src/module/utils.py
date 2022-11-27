@@ -11,7 +11,11 @@ def read_file(file: str) -> list[list[str]]:
     
     # transform sudoku into a list[list[str]] (sudoku -> lines -> chars)
     for line in lines:
+        print(line)
         sudoku.append(list(char for char in line))
+
+    for line in sudoku:
+        print(line)
     
     # verify that the sudoku is correct
     if len(sudoku) == 9:

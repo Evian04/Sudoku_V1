@@ -6,19 +6,19 @@ class Cell:
         self.a = a
         self.b = b
     
-    def get_possible_digits(self, sdk) -> list[str]:
+    def get_possible_digits(self, grid) -> list[str]:
         """
         Allows to collect all the possible numbers
         for a cell based on its row, column and cell group.
         """
         
-        if sdk[self.a][self.b] != " ":
-            return [sdk[self.a][self.b]]
+        if grid[self.get_a()][self.get_b()] != " ":
+            return [grid[self.get_a()][self.get_b()]]
 
-        list_digits = [str(a + 1) for a in range(9)] # = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        list_digits = [str(a + 1) for a in range(9)]
 
         for kind in ["line", "column", "square"]:
-            for d in sdk.content_as(kind)[0]:
+            for d in grid.get_as(kind)[0]:
                 if d != " ":
                     if d in list_digits:
                         list_digits.remove(d)

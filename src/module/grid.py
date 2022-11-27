@@ -23,8 +23,20 @@ class Grid:
         
         self.content[cell.get_a()][cell.get_b()] = " "
 
-    def is_valid(self):
+    def is_valid(self) -> bool:
         """ Checks by row, by column and by group of cells if the sudoku is valid """
+
+        # verification in line format
+        for f in ["line", "column", "square"]:
+            for group in self.get_as(f):
+                for num in group:
+                    if num not in group[0:group.index(num)] + group[group.index(num)+1:-1] or num == " ":
+                        continue
+                    else:
+                        print(f"The number '{num}' at the {f} {self.get_as(f).index(group)} and the {group.index(num)+1} character is already present in the {f}.")
+                        return False
+        return True
+                
 
     def first_empty_cell(self) -> Cell:
         """ Return the first empty cell """
