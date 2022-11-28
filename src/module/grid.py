@@ -30,10 +30,10 @@ class Grid:
         for f in ["line", "column", "square"]:
             for group in self.get_as(f):
                 for num in group:
-                    if num not in group[0:group.index(num)] + group[group.index(num)+1:-1] or num == " ":
-                        continue
+                    # if num not in group[0:group.index(num)] + group[group.index(num)+1:-1] or num == " ":
+                    if not group.count(num) > 1 or num == " ": continue
                     else:
-                        print(f"The number '{num}' at the {f} {self.get_as(f).index(group)} and the {group.index(num)+1} character is already present in the {f}.")
+                        print(f"'{num}' at the {f} {self.get_as(f).index(group)} and the {group.index(num)+1} character is already present in the {f}.")
                         return False
         return True
                 
@@ -73,3 +73,21 @@ class Grid:
                 index_converted = get_index_as(i_line, i_num, kind)
                 new_content[index_converted.get_a()][index_converted.get_b()] = self.content[i_line][i_num]
         return new_content
+
+    def get_possible_digits(self, cell: Cell) -> list[str]:
+        """
+        Allows to collect all the possible numbers
+        for a cell based on its row, column and cell group.
+        """
+        
+        if cell.get_value() != " ":
+            return [cell.get_value()]
+
+        list_digits = [str(a + 1) for a in range(9)]
+
+        for kind in ["line", "column", "square"]:
+            for d in self.get_as(kind)[get_index_as(cell.get_a(), cell.get_b(), kind).get_a()]:
+                if d != " ":
+                    if d in list_digits:
+                        list_digits.remove(d)
+        return list_digits
