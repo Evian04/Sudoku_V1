@@ -8,8 +8,24 @@ class Grid:
     def __init__(self, content: list[list[str]]):
         self.content = content
         
-    def solve(self):
+    def solve(self) -> bool:
         """ Solve this fucking Sudoku """
+        if self.is_full():
+            return self.is_valid()
+        
+        fec = self.first_empty_cell() # first empty cell
+        ld = self.get_possible_digits(fec) # list digits
+
+        if len(ld) == 0:
+            return False
+        
+        for d in ld:
+            self.set(fec, d)
+            if self.solve():
+                return True
+        
+        self.unset(fec)
+        return False
 
     def set(self, cell: Cell, value: str):
         """ Set the value of the given cell to `value` """
