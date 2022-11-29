@@ -3,7 +3,7 @@ from src.module.utils import read_file
 import time
 
 
-content = read_file("model.txt")
+content = read_file("pbss/model.txt")
 sdk = Grid(content)
 start_time = time.time()
 
