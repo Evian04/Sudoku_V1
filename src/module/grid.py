@@ -1,5 +1,6 @@
 from .utils import get_index_as
 from .cell import Cell
+import os
 
 
 class Grid:
@@ -8,10 +9,14 @@ class Grid:
     def __init__(self, content: list[list[str]]):
         self.content = content
         
-    def solve(self) -> bool:
+    def solve(self, display: bool) -> bool:
         """ Solve this fucking Sudoku """
         if self.is_full():
             return self.is_valid()
+        
+        if display:
+            os.system("cls")
+            self.print_grid()
         
         fec = self.first_empty_cell() # first empty cell
         ld = self.get_possible_digits(fec) # list digits
@@ -21,7 +26,7 @@ class Grid:
         
         for d in ld:
             self.set(fec, d)
-            if self.solve():
+            if self.solve(display):
                 return True
         
         self.unset(fec)
