@@ -107,3 +107,21 @@ class Grid:
                     if d in list_digits:
                         list_digits.remove(d)
         return list_digits
+    
+    def print_grid(self):
+        grid = self.get_as()
+        string_to_print = ""
+
+        for line in grid:
+            sub_string = ""
+            for cell in line:
+                sub_string += cell + " "
+                if line.index(cell) in [2, 5]:
+                    sub_string += "| "
+            
+            string_to_print += sub_string + "\n"
+
+            if grid.index(line) in [2, 5]:
+                string_to_print += "-" * 6 + "+" + "-" * 7 + "+" + "-" * 6 + "\n"
+        
+        print("\n" + string_to_print)

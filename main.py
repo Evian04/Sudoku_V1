@@ -8,8 +8,7 @@ sdk = Grid(content)
 start_time = time.time()
 
 if sdk.solve():
-    for line in sdk.get_as():
-        print(line)
+    sdk.print_grid()
     print(sdk.is_valid())
     print(f"{time.time() - start_time} seconds.")
 
