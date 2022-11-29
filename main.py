@@ -7,9 +7,11 @@ import time
 content = read_file("./model.txt")
 sdk = Grid(content)
 start_time = time.time()
+display = True # `False` to not display the process
 
-if sdk.solve(True): # `False` to not display the process
-    sdk.print_grid()
-    print(f"{time.time() - start_time} seconds.")
+if sdk.solve(display):
+    if not display:
+        sdk.print_grid()
+    print(f"\n [     {time.time() - start_time} seconds     ]")
 
 else: quit("Cannot solve sudoku.")

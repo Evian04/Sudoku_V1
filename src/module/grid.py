@@ -113,20 +113,46 @@ class Grid:
                         list_digits.remove(d)
         return list_digits
     
-    def print_grid(self):
-        grid = self.get_as()
-        string_to_print = ""
+    # def print_grid(self):
+    #     grid = self.get_as()
+    #     string_to_print = ""
 
-        for line in grid:
-            sub_string = ""
-            for cell in line:
-                sub_string += cell + " "
-                if line.index(cell) in [2, 5]:
-                    sub_string += "| "
+    #     for line in grid:
+    #         sub_string = ""
+    #         for cell in line:
+    #             sub_string += cell + " "
+    #             if line.index(cell) in [2, 5]:
+    #                 sub_string += "| "
             
-            string_to_print += sub_string + "\n"
+    #         string_to_print += sub_string + "\n"
 
-            if grid.index(line) in [2, 5]:
-                string_to_print += "-" * 6 + "+" + "-" * 7 + "+" + "-" * 6 + "\n"
+    #         if grid.index(line) in [2, 5]:
+    #             string_to_print += "-" * 6 + "+" + "-" * 7 + "+" + "-" * 6 + "\n"
         
-        print("\n" + string_to_print)
+    #     print("\n" + string_to_print)
+    def print_grid(self):
+        content = self.get_as()
+        template = """
+        {} {} {} | {} {} {} | {} {} {}
+        {} {} {} | {} {} {} | {} {} {}
+        {} {} {} | {} {} {} | {} {} {}
+        ------+-------+------
+        {} {} {} | {} {} {} | {} {} {}
+        {} {} {} | {} {} {} | {} {} {}
+        {} {} {} | {} {} {} | {} {} {}
+        ------+-------+------
+        {} {} {} | {} {} {} | {} {} {}
+        {} {} {} | {} {} {} | {} {} {}
+        {} {} {} | {} {} {} | {} {} {}"""
+         
+        print(template.format(
+            content[0][0], content[0][1], content[0][2], content[0][3], content[0][4], content[0][5], content[0][6], content[0][7], content[0][8],
+            content[1][0], content[1][1], content[1][2], content[1][3], content[1][4], content[1][5], content[1][6], content[1][7], content[1][8],
+            content[2][0], content[2][1], content[2][2], content[2][3], content[2][4], content[2][5], content[2][6],content[2][7], content[2][8],
+            content[3][0], content[3][1], content[3][2], content[3][3], content[3][4], content[3][5], content[3][6], content[3][7], content[3][8],
+            content[4][0], content[4][1], content[4][2], content[4][3], content[4][4], content[4][5], content[4][6], content[4][7], content[4][8],
+            content[5][0], content[5][1], content[5][2], content[5][3], content[5][4], content[5][5], content[5][6], content[5][7], content[5][8],
+            content[6][0], content[6][1], content[6][2], content[6][3], content[6][4], content[6][5], content[6][6], content[6][7], content[6][8],
+            content[7][0], content[7][1], content[7][2], content[7][3], content[7][4], content[7][5], content[7][6], content[7][7], content[7][8],
+            content[8][0], content[8][1], content[8][2], content[8][3], content[8][4], content[8][5], content[8][6], content[8][7], content[8][8]
+        ))
