@@ -4,11 +4,11 @@ from src.module.utils import read_file
 import time
 
 
-path = input("Enter the absuolute path of your sudoku (make sure that there is `/` and not `\\` as file separator)\n-> ")
+path = input("Enter the absuolute path of your sudoku\n-> ")
 content = read_file(path)
 sdk = Grid(content)
 start_time = time.time()
-is_process_displayed = True # `False` to not display the process
+is_process_displayed = False # `False` to not display the process
 
 if sdk.solve(is_process_displayed):
     if not is_process_displayed:
