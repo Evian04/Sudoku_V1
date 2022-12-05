@@ -12,8 +12,11 @@ is_process_displayed = False # `False` to not display the process
 
 if sdk.solve(is_process_displayed):
     if not is_process_displayed:
-        sdk.print_grid(False)
+        sdk.print_grid(False, new_cells_color = "green")
     
+    else:
+        sdk.print_grid(True, new_cells_color = "green")
+
     print(f"\nTime taken : {time.time() - start_time} seconds")
 
 else: quit("Cannot solve sudoku.")

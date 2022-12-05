@@ -1,6 +1,7 @@
 from .utils import get_index_as
 from .cell import Cell
 import os
+import termcolor
 
 
 class Grid:
@@ -8,7 +9,8 @@ class Grid:
     
     def __init__(self, content: list[list[str]]):
         self.content = content
-        
+        self.originals_cells_index = self.get_filled_cell_index()
+    
     def solve(self, display: bool) -> bool:
         """ Solve this fucking Sudoku """
         if self.is_full():
@@ -24,7 +26,7 @@ class Grid:
             self.set(fec, d)
 
             if display:
-                self.print_grid(True)
+                self.print_grid(True, new_cells_color = "blue")
 
             if self.solve(display):
                 return True
@@ -113,21 +115,36 @@ class Grid:
                         list_digits.remove(d)
         return list_digits
     
-    def print_grid(self, clear_term: bool):
+    def get_filled_cell_index(self) -> list[tuple[int]]:
+        """
+        Return the list of the filled cells index
+        """
+        list_index = []
+        for i1 in range(9):
+            for i2 in range(9):
+                if self.content[i1][i2].isdigit():
+                    list_index.append((i1, i2))
+        
+        return list_index
+    
+    def print_grid(self, clear_term: bool, original_cells_color: str = "white", new_cells_color: str = "white", lines_color: str = "white"):
         grid = self.get_as()
         string_to_print = ""
 
         for index_line in range(len(grid)):
             sub_string = ""
             for index_cell in range(len(grid[index_line])):
-                sub_string += grid[index_line][index_cell] + " "
+                if (index_line, index_cell) in self.originals_cells_index:
+                    sub_string += termcolor.colored(grid[index_line][index_cell], original_cells_color) + " "
+                else:
+                    sub_string += termcolor.colored(grid[index_line][index_cell], new_cells_color) + " "
                 if index_cell in [2, 5]:
-                    sub_string += "| "
+                    sub_string += termcolor.colored("| ", lines_color)
             
             string_to_print += sub_string + "\n"
 
             if index_line in [2, 5]:
-                string_to_print += "-" * 6 + "+" + "-" * 7 + "+" + "-" * 6 + "\n"
+                string_to_print += termcolor.colored("-" * 6 + "+" + "-" * 7 + "+" + "-" * 6 + "\n", lines_color)
         
         if clear_term:
             os.system("cls")
